@@ -8,3 +8,10 @@ export function loginRequest(params){
         params
     });
 }
+
+//请求左侧菜单
+export function leftMenuRequest(){
+    return request({
+        url: 'menus'
+    })
+}

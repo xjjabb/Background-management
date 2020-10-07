@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 const Login=()=>import('@/view/Login.vue');
 const Home=()=>import('@/view/Home.vue');
+const Welcome=()=>import('@/view/Welcome.vue');
 
 Vue.use(VueRouter);
 
@@ -17,7 +18,17 @@ const router=new VueRouter({
             component: Home,
             meta: {
                 title: '首页'
-            }
+            },
+            redirect: '/welcome',
+            children: [
+                {
+                    path: '/welcome',
+                    component: Welcome,
+                    meta: {
+                        title: '首页'
+                    }
+                }
+            ]
         },
         {
             path: '/login',
