@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 const Login=()=>import('@/view/Login.vue');
 const Home=()=>import('@/view/Home.vue');
 const Welcome=()=>import('@/view/Welcome.vue');
+const Users=()=>import('@/view/userlist/Users.vue');
 
 Vue.use(VueRouter);
 
@@ -26,6 +27,13 @@ const router=new VueRouter({
                     component: Welcome,
                     meta: {
                         title: '首页'
+                    }
+                },
+                {
+                    path: '/users',
+                    component: Users,
+                    meta: {
+                        title: '用户管理'
                     }
                 }
             ]

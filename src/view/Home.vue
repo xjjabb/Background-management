@@ -15,13 +15,14 @@
               active-text-color="#409fff"
               unique-opened
               :collapse-transition="false"
-              :collapse="isCollapse">
+              :collapse="isCollapse"
+              :default-active="link">
               <el-submenu v-for="item in menulist" :key="item.id" :index="item.id+''">
                 <template slot="title">
                   <i :class="icolist[item.id]"></i>
                   <span>{{item.authName}}</span>
                 </template>
-                <el-menu-item v-for="subitem in item.children" :key="subitem.id" :index="'/'+subitem.path">
+                <el-menu-item @click="saveNavState('/'+subitem.path)" v-for="subitem in item.children" :key="subitem.id" :index="'/'+subitem.path">
                     <template slot="title">
                         <i class="el-icon-menu"></i>
                         <span>{{subitem.authName}}</span>
@@ -52,11 +53,14 @@ export default {
                 '145': 'iconfont icon-baobiao'
             },//菜单图标
             isCollapse: false,//是否折叠菜单
+            link: '',//路由被激活的链接地址高亮
         }
     },
     created(){
         //请求左侧菜单
-        this.leftMenu()
+        this.leftMenu();
+        //去出路由高亮的标志位
+        this.link=window.sessionStorage.getItem('activePath');
     },
     methods: {
         //退出
@@ -74,6 +78,11 @@ export default {
         //折叠
         toggleCollapse(){
             this.isCollapse=!this.isCollapse;
+        },
+        //保存菜单高亮的状态
+        saveNavState(value){
+            window.sessionStorage.setItem('activePath',value);
+            this.link=value;
         }
     }
 }
