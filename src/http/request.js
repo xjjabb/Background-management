@@ -67,3 +67,83 @@ export function deleteUserById(id){
         method: 'delete'
     })
 }
+
+//分配角色
+export function assignRolesRequest(id,rid){
+    return request({
+        url: `users/${id}/role`,
+        method: 'put',
+        data: {
+            rid
+        }
+    })
+}
+
+//获取角色列表
+export function getRolesRequest(){
+    return request({
+        url: 'roles',
+        method: 'get'
+    })
+}
+
+//查询所有权限列表
+export function selectRightsRequest(type){
+    return request({
+        url: `rights/${type}`,
+        method: 'get'
+    })
+}
+
+//角色授权
+export function roleAuthorizationRequest(id,rids){
+    return request({
+        url: `roles/${id}/rights`,
+        method: 'post',
+        data: {
+            rids
+        }
+    })
+}
+
+//删除角色指定权限
+export function deleteRightsRequest(roleId,rightId){
+    return request({
+        url: `roles/${roleId}/rights/${rightId}`,
+        method: 'delete'
+    })
+}
+
+//添加角色
+export function insertRolesRequest(data){
+    return request({
+        url: 'roles',
+        method: 'post',
+        data
+    })
+}
+
+//根据角色id查询角色
+export function selectRoleById(id){
+    return request({
+        url: `roles/${id}`,
+        method: 'get'
+    })
+}
+
+//编辑角色
+export function updateUserRoles(id,data){
+    return request({
+        url: `roles/${id}`,
+        method: 'put',
+        data
+    })
+}
+
+//删除角色
+export function deleteUserRightsRequest(id){
+    return request({
+        url: `roles/${id}`,
+        method: 'delete'
+    })
+}
